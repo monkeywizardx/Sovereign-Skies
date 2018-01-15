@@ -34,11 +34,27 @@ class Character(DefaultCharacter):
             'necromancy': 0,
             'wild magic': 0,
             'wizardry': 0,
+            'concentration': 0,
+            'resist': 0,
             'destruction': 0,
             'healing': 0,
             'blade': 0,
             'bow': 0,
             'block': 0,
-            'dodge': 0,
-            'health': 100
+            'dodge': 0
         }
+        self.db.health = 100
+        self.db.mana = 0
+        self.db.resists = {
+            'HEAL': -1,
+            'UNHOLY': 2
+        }
+
+    def recharge_tick(self):
+        '''
+        To be called by a script, this
+        '''
+        if self.db.health < 100 + self.db.skills['resist']:
+            self.db.health += 1
+        if self.db.mana < self.db.skills['wizardry'] + self.db.skills['concentration']:
+            self.db.mana += 1
