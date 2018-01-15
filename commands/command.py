@@ -183,7 +183,6 @@ class MuxCommand(Command):
                 self.character = self.caller.get_puppet(self.session)
             else:
                 self.character = None
-
 import os
 class UpdateServer(MuxCommand):
     '''
@@ -193,7 +192,7 @@ class UpdateServer(MuxCommand):
     '''
     key = "@updateserver"
     help_category = "admin"
-    locks = "cmd:perm(Admin)" 
+    locks = "cmd:perm(Admin)"
     def func(self):
         os.system("git pull") # Really, this is just a one liner.
         self.caller.execute_cmd("@reload")
