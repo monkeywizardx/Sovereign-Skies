@@ -43,6 +43,10 @@ class Character(DefaultCharacter):
             'block': 0,
             'dodge': 0
         }
+        self.db.home = 2 # The starting room, by default.
+        self.db.spells = {
+
+        }
         self.db.health = 100
         self.db.mana = 0
         self.db.resists = {
@@ -58,3 +62,18 @@ class Character(DefaultCharacter):
             self.db.health += 1
         if self.db.mana < self.db.skills['wizardry'] + self.db.skills['concentration']:
             self.db.mana += 1
+
+    def damage(self, dam, spell, attacker):
+        types = spell.damage_types
+        resists = [self.db.resists.get(dam_type, 1) for dam_type in types]
+        damage = (reduce(lambda x, y: x * y, [dam, *resists]))
+        if [x for x in resists if x < 0] == resists:
+            self.location.msg_contents("%s uses %s on %s, healing them for %d", attacker, spell.key, self, damage)
+            self.db.health -= damage # Check if it's all healing.
+        else:
+            self.location.msg_contents("%s uses %s on %s, dealing %d damage", attacker, spell.key, self, damage)
+            self.db.health -= damage - self.db.skills['dodge'] - self.db.skills['block']
+        self.health_check()
+
+    def health_check(self):
+        if self.db.health == 0: self.location = self.db.home
