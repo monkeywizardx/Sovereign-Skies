@@ -184,6 +184,7 @@ class MuxCommand(Command):
             else:
                 self.character = None
 import os
+
 class UpdateServer(MuxCommand):
     '''
     Uses OS features to run a git-pull and then reloads the server.
