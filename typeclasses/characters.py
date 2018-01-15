@@ -33,6 +33,7 @@ class Character(DefaultCharacter):
         self.db.skills = {
             'necromancy': 0,
             'wild magic': 0,
+            'wizardry': 0,
             'destruction': 0,
             'healing': 0,
             'blade': 0,
