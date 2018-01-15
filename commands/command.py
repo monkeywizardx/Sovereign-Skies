@@ -185,7 +185,7 @@ class MuxCommand(Command):
                 self.character = None
 import os
 
-class UpdateServer(MuxCommand):
+class UpdateServerCmd(MuxCommand):
     '''
     Uses OS features to run a git-pull and then reloads the server.
     Since some of my dev work is going to be offsite, having the ability to change the code
