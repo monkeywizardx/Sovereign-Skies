@@ -34,7 +34,7 @@ from evennia.settings_default import *
 # This is the name of your game. Make it catchy!
 SERVERNAME = "Sovereign Skies"
 WEBSERVER_PORTS = [(8080,4001)]
-
+COMMAND_DEFAULT_CLASS = "commands.command.MuxCommand"
 ######################################################################
 # Settings given in secret_settings.py override those in this file.
 ######################################################################
