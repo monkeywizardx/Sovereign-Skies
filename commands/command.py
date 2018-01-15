@@ -183,6 +183,7 @@ class MuxCommand(Command):
                 self.character = self.caller.get_puppet(self.session)
             else:
                 self.character = None
+<<<<<<< HEAD
 
 import os
 class UpdateServer(MuxCommand):
@@ -197,3 +198,5 @@ class UpdateServer(MuxCommand):
     def func(self):
         os.system("git pull") # Really, this is just a one liner.
         self.caller.execute_cmd("@reload")
+=======
+>>>>>>> f84e007fa7e0d712dca6611714d9766095f7b5b6
