@@ -66,7 +66,7 @@ class Character(DefaultCharacter):
     def damage(self, dam, spell, attacker):
         types = spell.damage_types
         resists = [self.db.resists.get(dam_type, 1) for dam_type in types]
-        damage = (reduce(lambda x, y: x * y, [dam, *resists]))
+        damage = (reduce(lambda x, y: x * y, [dam] + resists))
         if [x for x in resists if x < 0] == resists:
             self.location.msg_contents("%s uses %s on %s, healing them for %d", attacker, spell.key, self, damage)
             self.db.health -= damage # Check if it's all healing.
