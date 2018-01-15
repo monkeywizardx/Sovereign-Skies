@@ -22,11 +22,22 @@ class Character(DefaultCharacter):
     at_post_unpuppet(player) -  when Player disconnects from the Character, we
                     store the current location in the pre_logout_location Attribute and
                     move it to a None-location so the "unpuppeted" character
-                    object does not need to stay on grid. Echoes "Player has disconnected" 
+                    object does not need to stay on grid. Echoes "Player has disconnected"
                     to the room.
     at_pre_puppet - Just before Player re-connects, retrieves the character's
                     pre_logout_location Attribute and move it back on the grid.
     at_post_puppet - Echoes "PlayerName has entered the game" to the room.
 
     """
-    pass
+    def at_object_creation(self):
+        self.db.skills = {
+            'necromancy': 0,
+            'wild magic': 0,
+            'destruction': 0,
+            'healing': 0,
+            'blade': 0,
+            'bow': 0,
+            'block': 0,
+            'dodge': 0,
+            'health': 100
+        }
