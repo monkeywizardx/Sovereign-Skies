@@ -32,8 +32,8 @@ from evennia.settings_default import *
 ######################################################################
 
 # This is the name of your game. Make it catchy!
-SERVERNAME = "Sovereign skies"
-WEBSERVER_PORTS = [(4001,8000)]
+SERVERNAME = "Sovereign Skies"
+WEBSERVER_PORTS = [(4001,8080)]
 
 ######################################################################
 # Settings given in secret_settings.py override those in this file.
