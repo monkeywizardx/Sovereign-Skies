@@ -229,7 +229,14 @@ class UseCmd(MuxCommand):
     def func(self):
         player = self.caller
         spell = self.lhs
-        target = self.rhs
+        target = player.search(target, location=player.location,
+        nofound_string="You don't see %s here." % target,
+        multimatch_string="You see multiple %s here." % target)
+        if spell in player.db.spells:
+            if target:
+                player.db.spells[spell].cast(player, target)
+        else:
+            player.msg()
 
 class WaitCmd(MuxCommand):
     """
