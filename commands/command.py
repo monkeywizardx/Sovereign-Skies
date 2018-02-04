@@ -230,8 +230,8 @@ class UseCmd(MuxCommand):
         player = self.caller
         spell = self.lhs
         target = player.search(self.rhs, location=player.location,
-        nofound_string="You don't see %s here." % target,
-        multimatch_string="You see multiple %s here." % target)
+        nofound_string="You don't see %s here." % self.rhs,
+        multimatch_string="You see multiple %s here." % self.rhs)
         if spell in player.db.spells:
             if target:
                 player.db.spells[spell].cast(player, target)
