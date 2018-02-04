@@ -53,6 +53,7 @@ class Character(DefaultCharacter):
             'HEAL': -1,
             'UNHOLY': 2
         }
+        self.cmdset.add("commands.default_cmdsets.CombatCmdSet", permanent=True)
 
     def recharge_tick(self):
         '''

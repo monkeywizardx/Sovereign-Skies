@@ -13,7 +13,7 @@ to add/remove commands from the default lineup. You can create your
 own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 
 """
-
+from evennia import CmdSet
 from evennia import default_cmds
 from commands import command
 
@@ -33,6 +33,13 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
+
+class CombatCmdSet(CmdSet):
+    key = "Combat"
+
+    def at_cmdset_creation(self):
+        self.add(command.LearnCmd)
+        super(CombatCmdSet, self).at_cmdset_creation()
 
 
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
