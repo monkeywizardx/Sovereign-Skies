@@ -229,7 +229,7 @@ class UseCmd(MuxCommand):
     def func(self):
         player = self.caller
         spell = self.lhs
-        target = player.search(target, location=player.location,
+        target = player.search(self.rhs, location=player.location,
         nofound_string="You don't see %s here." % target,
         multimatch_string="You see multiple %s here." % target)
         if spell in player.db.spells:
