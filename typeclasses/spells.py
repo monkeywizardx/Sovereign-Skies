@@ -45,3 +45,11 @@ class Spell:
         caster.msg("You cast %s on %s." % self.key, target)
         boost = sum([level * self.skill_boost.get(skill, 0) for skill, level in caster.db.skills])
         target.db.damage(self.damage + boost, damage_types)
+
+import yaml
+for spell_name, spell in yaml.safe_load(open('skills/skills.yaml')).items:
+    spell_dict = {
+        'key': spell_name,
+        **spell
+    }
+    Spell(**spell_dict)

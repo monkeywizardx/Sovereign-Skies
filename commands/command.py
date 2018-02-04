@@ -187,20 +187,33 @@ class MuxCommand(Command):
 import os
 
 class LearnCmd(MuxCommand):
+    """
+    Learn new combat skills and spells.
+
+    Usage:
+        learn
+
+    This command adds all skills that the player can learn.
+    """
     key = "learn"
     help_category = "combat"
     def func(self):
         player = self.caller
         learned = False
         for key, spell in spells.spells.items():
+            learnable = True
             for skill, req in spell.skill_requirement.items():
                 if player.db.skills[skill] >= req:
-                    learned = True
-                    player.msg("You learn |054{}".format(key))
-                    player.db.spells[key] = spell
+                    learnable = learnable and True
+            if learnable:
+                player.msg("You learn |054{}".format(key))
+                player.db.spells[key] = spell
+                learned = True
+
         if not learned:
             player.msg("|rYou can't learn anything new.")
 
+class
 class UpdateServerCmd(MuxCommand):
     '''
     Uses OS features to run a git-pull and then reloads the server.
