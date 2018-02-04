@@ -229,6 +229,12 @@ class UseCmd(MuxCommand):
     def func(self):
         player = self.caller
         spell = self.lhs
+        if not spell:
+            player.msg("You must specify a skill!")
+            return
+        if not self.rhs:
+            player.msg("You must specify a target!")
+            return
         target = player.search(self.rhs, location=player.location,
         nofound_string="You don't see %s here." % self.rhs,
         multimatch_string="You see multiple %s here." % self.rhs)
