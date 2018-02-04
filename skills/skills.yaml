@@ -1,0 +1,8 @@
+punch:
+  damage: 2
+  skill_requirement:
+    barehanded: 0
+  skill_boost:
+    barehanded: 5
+  lore: |
+    The treasured art of punching the crap out of people.
