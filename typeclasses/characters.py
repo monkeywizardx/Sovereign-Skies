@@ -41,7 +41,8 @@ class Character(DefaultCharacter):
             'blade': 0,
             'bow': 0,
             'block': 0,
-            'dodge': 0
+            'dodge': 0,
+            'barehanded': 0
         }
         self.db.home = 2 # The starting room, by default.
         self.db.spells = {
