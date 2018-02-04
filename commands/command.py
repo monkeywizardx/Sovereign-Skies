@@ -6,6 +6,7 @@ Commands describe the input the player can do to the game.
 """
 
 from evennia import Command as BaseCommand
+from typeclasses import spells
 # from evennia import default_cmds
 
 
@@ -185,6 +186,16 @@ class MuxCommand(Command):
                 self.character = None
 import os
 
+class LearnCmd(MuxCommand):
+    key = "learn"
+    help_category = "combat"
+    locks = "cmd:True"
+    def func(self):
+        for key, spell in spells.spells.items():
+            for skill, req in spell.skill_requirement.items():
+                if player.db.skills[skill] >= req:
+                    player.db.spells[key] = spell
+        
 class UpdateServerCmd(MuxCommand):
     '''
     Uses OS features to run a git-pull and then reloads the server.

@@ -1,20 +1,25 @@
+spells = {
+
+}
+
 class Spell:
     '''
     Spells are attacks that deal damage of a certain type and cost mana.
     They have a certain skill requirement before they can be learned.
     '''
-    self.skill_requirement = {
+    skill_requirement = {
         # This can be a requirement for any skill.
     }
 
-    self.damage = 0 # Base damage done.
+    damage = 0 # Base damage done.
 
-    self.skill_boost = {
+    skill_boost = {
         # Boost per level of a particular skill.
     }
-    self.damage_types = [] # Keys corresponding to the damage types.
+    damage_types = [] # Keys corresponding to the damage types.
 
     def __init__(self, key, skill_requirement, damage, skill_boost, damage_types, lore=""):
+        spells[key] = self
         self.key = key
         self.skill_requirement = skill_requirement
         self.damage = damage
