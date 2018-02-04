@@ -71,10 +71,10 @@ class Character(DefaultCharacter):
         damage = (reduce(lambda x, y: x * y, [dam] + resists))
         if damage < 0:
             self.location.msg_contents("%s uses %s on %s, healing them for %d", attacker, spell.key, self, damage)
-            self.db.health -= damage # Check if it's all healing.
+            self.db.health += damage # Check if it's all healing.
         else:
             self.location.msg_contents("%s uses %s on %s, dealing %d damage", attacker, spell.key, self, damage)
-            self.db.health -= damage - self.db.skills['dodge'] - self.db.skills['block']
+            self.db.health -= max(damage - self.db.skills['dodge'] - self.db.skills['block'], 0)
         self.health_check()
 
     def health_check(self):

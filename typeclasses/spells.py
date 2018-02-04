@@ -50,14 +50,17 @@ class Spell:
         '''
         caster.msg("You cast %s on %s." % self.key, target)
         boost = sum([level * self.skill_boost.get(skill, 0) for skill, level in caster.db.skills])
-        target.db.damage(self.damage + boost, damage_types)
+        try: target.damage(self.damage + boost, damage_types)
+        except AttributeError:
+            caster.msg("You attack %s, but it has no effect." % target)
         for skill in self.skill_boost:
             caster.db.skills[skill] += 0.1
 
 import yaml
-for spell_name, spell in yaml.safe_load(open('skills/skills.yaml')).items:
+for spell_name, spell in yaml.safe_load(open('skills/skills.yaml')).items():
     spell_dict = {
         'key': spell_name,
-        **spell
     }
+    for k, v in spell.items():
+        spell_dict[k] = v
     Spell(**spell_dict)

@@ -213,7 +213,38 @@ class LearnCmd(MuxCommand):
         if not learned:
             player.msg("|rYou can't learn anything new.")
 
-class
+import time
+
+class UseCmd(MuxCommand):
+    """
+    Use a combat skill.
+
+    Usage:
+        use <skill-name> <target>
+
+    This is your fighting ability for five minutes.
+    """
+    key = "use"
+    help_category = "combat"
+    def func(self):
+        player = self.caller
+        spell = self.lhs
+        target = self.rhs
+
+class WaitCmd(MuxCommand):
+    """
+    Wait a little bit.
+
+    Usage:
+        wait
+
+    You wait a few moments, just long enough to regain some health and stamina.
+    """
+    key = "wait"
+    help_category = "combat"
+    def func(self):
+        self.caller.recharge_tick()
+
 class UpdateServerCmd(MuxCommand):
     '''
     Uses OS features to run a git-pull and then reloads the server.
