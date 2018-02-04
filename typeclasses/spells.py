@@ -49,7 +49,8 @@ class Spell:
         Calculates dealt damage and then calls the targets damage.
         '''
         caster.msg("You cast %s on %s." % (self.key, target))
-        boost = sum([level * self.skill_boost.get(skill, 0) for skill, level in caster.db.skills])
+        boost = [level * self.skill_boost.get(skill, 0) for skill, level in caster.db.skills]
+        boost = sum(boost)
         try: target.damage(self.damage + boost, damage_types)
         except AttributeError:
             caster.msg("You attack %s, but it has no effect." % target)

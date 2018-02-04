@@ -39,6 +39,8 @@ class CombatCmdSet(CmdSet):
 
     def at_cmdset_creation(self):
         self.add(command.LearnCmd)
+        self.add(command.UseCmd)
+        self.add(command.WaitCmd)
         super(CombatCmdSet, self).at_cmdset_creation()
 
 
